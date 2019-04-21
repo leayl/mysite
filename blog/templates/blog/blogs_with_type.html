@@ -5,5 +5,5 @@
 {% endblock %}
 
 {% block blog_list_title %}
-分类:{{ blog_type.title }}(一共有{{ blogs|length }}篇博客) <a href="{% url 'blog_list' %}">查看全部博客</a>
+分类:{{ blog_type.title }}<a href="{% url 'blog_list' %}"> 查看全部博客</a>
 {% endblock %}

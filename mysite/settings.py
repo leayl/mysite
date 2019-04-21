@@ -123,3 +123,6 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static').replace("\\", "/"),
 ]
 # STATIC_ROOT = os.path.join(BASE_DIR,'static').replace("\\","/")
+
+# 分页显示数
+EACH_PAGE_BLOGS_NUMBER=5

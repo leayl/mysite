@@ -25,3 +25,6 @@ ul.blog_info_detail li{
 div.blog-content{
     text-align: 2em;
 }
+div.paginator{
+    text-align:center;
+}

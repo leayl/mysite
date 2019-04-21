@@ -7,7 +7,6 @@ class BlogType(models.Model):
     def __str__(self):
         return self.title
 
-
 class Blog(models.Model):
     title = models.CharField(max_length=32)
     blog_type = models.ForeignKey(BlogType, on_delete=models.DO_NOTHING)
@@ -17,3 +16,5 @@ class Blog(models.Model):
     last_update_time = models.DateTimeField(auto_now=True)
     def __str__(self):
         return self.title
+    class Meta:
+        ordering=['-created_time']
