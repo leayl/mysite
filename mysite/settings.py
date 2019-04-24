@@ -38,6 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'blog',
+    'ckeditor',
+    'ckeditor_uploader', # 富文本编辑器ckeditor上传图片功能（需先安装pillow）
 ]
 
 MIDDLEWARE = [
@@ -104,7 +106,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/2.0/topics/i18n/
 
-LANGUAGE_CODE = 'zh-Hans'
+LANGUAGE_CODE = 'zh-hans'
 
 TIME_ZONE = 'UTC'
 
@@ -123,6 +125,12 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static').replace("\\", "/"),
 ]
 # STATIC_ROOT = os.path.join(BASE_DIR,'static').replace("\\","/")
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR,'media').replace("\\","/")
+
+# 配置ckeditor
+CKEDITOR_UPLOAD_PATH = 'upload/'
 
 # 分页显示数
 EACH_PAGE_BLOGS_NUMBER=5
