@@ -13,6 +13,7 @@ class Blog(models.Model):
     blog_type = models.ForeignKey(BlogType, on_delete=models.DO_NOTHING)
     content = RichTextUploadingField()
     author = models.ForeignKey(User, on_delete=models.DO_NOTHING)
+    read_times = models.IntegerField(default=0)
     created_time = models.DateTimeField(auto_now_add=True)
     last_update_time = models.DateTimeField(auto_now=True)
     def __str__(self):

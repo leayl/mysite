@@ -1,4 +1,4 @@
-from django.shortcuts import get_object_or_404, render
+from django.shortcuts import get_object_or_404, render, render_to_response
 from blog.models import Blog, BlogType
 from django.core.paginator import Paginator
 from django.conf import settings
@@ -65,8 +65,14 @@ def blogs_with_date(request, year, month, day):
 def blog_detail(request, blog_pk):
     context = {}
     blog = get_object_or_404(Blog, pk=blog_pk)
+    # 为博客阅读计数
+    if not request.COOKIES.get("blog_%s_read" % blog.pk):
+        blog.read_times += 1
+    blog.save()
     context["blog"] = blog
     context["previous_blog"] = Blog.objects.filter(created_time__gt=blog.created_time).last()
     context["next_blog"] = Blog.objects.filter(created_time__lt=blog.created_time).first()
     context["blog_dates"] = Blog.objects.dates('created_time', 'day', order='DESC')
-    return render(request, "blog/blog_detail.html", context)
+    response = render_to_response("blog/blog_detail.html", context)
+    response.set_cookie("blog_%s_read" % blog.pk,"true")
+    return response
