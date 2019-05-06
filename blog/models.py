@@ -14,6 +14,10 @@ class BlogType(models.Model):
         return self.title
 
 class Blog(models.Model,ReadNumExtendMethod):
+    """
+    继承了read_statistics.models中的ReadNumExtendMethod
+    获得get_read_num方法，可在admin中直接使用显示在后台
+    """
     title = models.CharField(max_length=32)
     blog_type = models.ForeignKey(BlogType, on_delete=models.DO_NOTHING)
     content = RichTextUploadingField()
@@ -26,10 +30,3 @@ class Blog(models.Model,ReadNumExtendMethod):
     class Meta:
         ordering=['-created_time']
 
-
-
-'''
-class ReadNum(models.Model):
-    read_num=models.IntegerField(default=0)
-    blog=models.OneToOneField(Blog,on_delete=models.DO_NOTHING)
-'''
